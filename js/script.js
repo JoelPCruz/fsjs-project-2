@@ -23,7 +23,7 @@ function showPage (list, page) {
    let startIndex = (page * 9) - 9;
    let endIndex = page * 9;
 
-   let studentListUl = document.querySelectorAll(".student-list");
+   let studentListUl = document.querySelector(".student-list");
 
    studentListUl.innerHTML = '';
    let html = '';
