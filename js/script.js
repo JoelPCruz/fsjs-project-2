@@ -59,37 +59,44 @@ Create the `addPagination` function
 This function will create and insert/append the elements needed for the pagination buttons
 */
 
-function addPagination(list) {
-   let numOfPages = Math.ceil(list.length / 9);
-   let linksListUl = document.querySelectorAll('.link-list');
-
-   linksListUl.innerHTML = '';
-   let buttonHTML = "";
-
-   // looping over the number of pages needed.
-   for( let i = 0; i < numOfPages; i++) {
-      linksListUl += 
-         `
-         <li>
-            <button type="button">${i}}</button>
-          </li>
-         `;
+function addPagination (list) {
+   // console.log(list);
+ 
+   // variable show the number of the pagination button needed
+   const numOfPages = Math.ceil(list.length / 9)
+   // console.log(numOfPages);
+   const linkListUL = document.querySelector('.link-list')
+   // the list is set to am empty string to remove data if present
+   linkListUL.innerHTML = ''
+   let buttonHTML = ''
+ 
+   for (let i = 1; i <= numOfPages; i++) {
+     buttonHTML += `
+      <li>
+        <button type="button">${i}</button>
+      </li>    
+      `
+     // console.log(buttonHTML);
    }
-   linksListUl.insertAdjacentHTML('beforeend', buttonHTML)
-
-
+ 
+   linkListUL.insertAdjacentHTML('beforeend', buttonHTML)
+ 
    const button = document.querySelectorAll("button[type='button']")
    button[0].className = 'active'
-
-linksListUl.addEventListener('click', (e) => {
-   const buttonClicked = e.target;
-   if(buttonClicked.tagName === 'BUTTON') {
-      const activeClassButton = document.getElementsByClassName("active");
-      activeClassButton[0].className = 'active'
-      showPage(list, buttonClicked.textContent)
-   }
-});
-}
+   // console.log(button);
+ 
+   linkListUL.addEventListener('click', (e) => {
+     const buttonClicked = e.target
+     if (buttonClicked.tagName === 'BUTTON') {
+       const activeClassButton = document.getElementsByClassName('active')
+       activeClassButton[0].className = ''
+       buttonClicked.className = 'active'
+       showPage(list, buttonClicked.textContent)
+       // console.log(activeClassButton);
+     }
+   })
+ }
+ 
 // Call functions
 
 showPage(data, 1);
